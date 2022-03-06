@@ -1,16 +1,16 @@
 // ignore_for_file: deprecated_member_use
 
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 // ignore: unused_import
 import 'package:todoey_project/models/task.dart';
 // ignore: import_of_legacy_library_into_null_safe
-import 'package:provider/provider.dart';
 import 'package:todoey_project/models/task_data.dart';
 
 // ignore: use_key_in_widget_constructors, must_be_immutable
-class AddTaskScreen extends StatelessWidget {
+class AddTaskScreen extends ConsumerWidget {
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     late String newTaskTitle;
     return Container(
       color: const Color(0xff757575),
@@ -46,8 +46,7 @@ class AddTaskScreen extends StatelessWidget {
               ),
               color: Colors.lightBlueAccent,
               onPressed: () {
-                Provider.of<TaskData>(context, listen: false)
-                    .addTask(newTaskTitle);
+                ref.read(taskDataProvider).addTask(newTaskTitle);
                 Navigator.pop(context);
               },
             ),

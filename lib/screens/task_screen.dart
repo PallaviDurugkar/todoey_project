@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:todoey_project/widgets/tasks_list.dart';
 import 'package:todoey_project/screens/add_task_screen.dart';
-// ignore: import_of_legacy_library_into_null_safe
-import 'package:provider/provider.dart';
 import 'package:todoey_project/models/task_data.dart';
 
-// ignore: use_key_in_widget_constructors, must_be_immutable
 class TasksScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -57,12 +55,17 @@ class TasksScreen extends StatelessWidget {
                     fontWeight: FontWeight.w700,
                   ),
                 ),
-                Text(
-                  '${Provider.of<TaskData>(context).taskCount} Tasks',
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 18,
-                  ),
+                Consumer(
+                  builder: (context, ref, child) {
+                    final taskData = ref.watch(taskDataProvider);
+                    return Text(
+                      '${taskData.taskCount} Tasks',
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 18,
+                      ),
+                    );
+                  },
                 ),
               ],
             ),
