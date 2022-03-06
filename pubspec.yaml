@@ -1,0 +1,29 @@
+name: todoey_project
+description: A new flutter module project.
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.16.1 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.2
+  provider: ^4.1.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+    
+  flutter_lints: ^1.0.0
+
+flutter:
+  uses-material-design: true
+
+  module:
+    androidX: true
+    androidPackage: com.example.todoey_project
+    iosBundleIdentifier: com.example.todoeyProject
